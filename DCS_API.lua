@@ -498,9 +498,122 @@ Controller = {}
 
 ---https://wiki.hoggitworld.com/view/DCS_func_setTask
 ---Sets the specified task to the units or groups associated with the controller object. Tasks must fit a specified format. For more information see the specific task page you are looking for:
+---@param task table
+---@return function
+function Controller:setTask(task)
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_resetTask
+---Resets the current task assigned to the controller.
+---@return function
+function Controller:resetTask()
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_pushTask
+---Pushes the specified task to the front of the tasking queue. If no other tasks are currently active it will function effectively the same as Controller.setTask()
+---@param task table
+---@return function
+function Controller:pushTask(task)
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_popTask
+---Removes the top task from the tasking queue.
+---@return function
+function Controller:popTask()
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_hasTask
+---Returns true if the controller currently has a task.
+---@return boolean hasTask
+function Controller:hasTask()
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_setCommand
+---See documentation for a list of commands
+---@param command table
+---@return function
+function Controller:setCommand(command)
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_setOption
+---Options are a pair of identifier and value. Behavior options are global parameters and will affect controller behavior in all tasks it performs. Options are executed immediately.
+---For example Rules of Engagement (ROE) are an option that can dictate whether or not a group is currently allowed to attack. This option can over-ride tasking to attack specific targets.
+---@param option number
+---@param value any
+---@return function
+function Controller:setOption(option, value)
+end
+
+---@enum AltType
+local altType = {
+    RADIO = "RADIO",
+    BARO  = "BARO"
+}
+
+---https://wiki.hoggitworld.com/view/DCS_func_setOnOff
+---Enables or disables the AI controller for the specified group or unit. When AI is turned off the units are incapable of moving, shooting, or detecting targets.
+---@param on boolean
+---@return function
+function Controller:setOnOff(on)
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_setAltitude
+---Sets the controlled aircraft group to the specified altitude in meters.
+---@param altitude number m
+---@param keep? boolean
+---@param altType? AltType
+---@return function
+function Controller:setAltitude(altitude, keep, altType)
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_setSpeed
+---Sets the controlled group to go the specified speed in meters per second.
+---@param speed number m/s
+---@param keep? boolean
+---@return function
+function Controller:setSpeed(speed, keep)
+end
+
+---https://wiki.hoggitworld.com/view/DCS_func_knowTarget
+---Forces the controller to become aware of the specified target, without the controller manually detecting the object itself.
+---TODO: figure out real types
+---@param object any
+---@param type boolean does it know the type?
+---@param distance boolean does it know the distance?
+---@return function
+function Controller:knowTarget(object, type, distance)
+end
+
+---@enum DetectionType
+local detectionType = {
+    VISUAL=  1,
+    OPTIC =  2,
+    RADAR =  4,
+    IRST  =  8,
+    RWR   =  16,
+    DLINK =  32
+}
+
+---https://wiki.hoggitworld.com/view/DCS_func_isTargetDetected
+---@param target Object
+---@param detectionType DetectionType add extra detection types after this
+---@return boolean
+function Controller:isTargetDetected(target, detectionType)
+end
 
 
+---@class DetectedTarget
+---@field object Object
+---@field visible boolean
+---@field type boolean is the target type known?
+---@field distance boolean is the distance known?
 
+---https://wiki.hoggitworld.com/view/DCS_func_getDetectedTargets
+---Returns a table of detected targets that are detected by the different detection methods. If not detection method is specified, then all forms of detection will be used.
+---@param detectionType? DetectionType allows multiple detection type parameters
+---@return table<integer, DetectedTarget> detectedTargets
+function Controller:getDetectedTargets(detectionType)
+end
 
 
 ---@enum SurfaceType
@@ -1837,3 +1950,8 @@ local DoState = {
 ---@return string
 function net.dostring_in(state, luaString)
 end
+
+
+
+
+
