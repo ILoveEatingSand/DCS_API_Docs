@@ -46,6 +46,87 @@
 ---@field y number required
 ---@field dead boolean
 
+---@class RequiredGroupData
+
+---@class GroupData
+---@field name string
+---@field task string
+---@field units table<integer, UnitData>
+---@field tasks table<integer, TaskData>
+---@field groupId? number
+---@field start_time? number
+---@field lateActivation? boolean
+---@field hidden? boolean
+---@field hiddenOnPlanner? boolean
+---@field hiddenOnMFD? boolean
+---@field route? Route
+
+---@class AirGroupData: GroupData
+---@field uncontrolled? boolean
+---@field modulation? number 0-1
+---@field frequency? number
+---@field communication? boolean 
+
+---@class GroundGroupData: GroupData
+---@field visible? boolean
+---@field uncontrollable? boolean
+---@field manualHeading? boolean
+
+---@class ShipGroupData: GroupData
+---@field visible? boolean
+---@field uncontrollable? boolean
+
+---@enum Skill
+local skill = {
+    Excellent = "Excellent",
+    High = "High",
+    Good = "Good",
+    Average = "Average",
+    Random = "Random",
+    Player = "Player"
+}
+
+---@class UnitData
+---@field name string Required
+---@field type string Required
+---@field x number Required
+---@field y number Required
+---@field unitId? number
+---@field heading? number
+---@field skill? Skill
+
+---@class WeaponData
+---@field CLSID string
+
+---@class PayloadData
+---@class pylons? table<integer, WeaponData>
+---@field fuel? number
+---@field flare? number
+---@field chaff? number
+---@field gun? number
+---@field ammo_type? number
+
+---@class AirUnitData: UnitData
+---@field alt number Required in Meters
+---@field alt_type AltType Required
+---@field speed number Required in m/s
+---@field payload PayloadData Required
+---@field callsign string Required
+---@field AddPropAircraft? table
+---@field livery_id? string
+---@field psi? number
+---@field onboard_num? string
+---@field parking_landing? number
+---@field parking_landing_id? string
+---@field parking? string
+---@field parking_id? string
+---@field datalinks? table
+---@field ropeLength? number
+
+---@class GroundUnitData: UnitData
+---@field coldAtStart? boolean
+---@field playerCanDrive? boolean
+
 ---@class Object
 ---https://wiki.hoggitworld.com/view/DCS_Class_Object
 ---Represents an object with body, unique name, category and type. Non-final class
