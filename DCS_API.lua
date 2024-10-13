@@ -790,7 +790,7 @@ end
 ---@param anyFunctionArguement any
 ---@param modelTime number
 ---@return number functionId
-function timer.scheduleFunctionscheduleFunction(functionToCall, anyFunctionArguement, modelTime)
+function timer.scheduleFunction(functionToCall, anyFunctionArguement, modelTime)
 end
 
 ---https://wiki.hoggitworld.com/view/DCS_func_removeFunction
